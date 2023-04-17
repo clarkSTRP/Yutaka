@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//route utilisateurs
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+// route admin
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+Route::resource('user', UserController::class);
+Route::resource('post', PostController::class);
+Route::resource('city', CityController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
