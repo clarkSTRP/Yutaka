@@ -43,11 +43,9 @@ class PostController extends Controller
         $myArray = $request->all();
         $myArray["user_id"] = $id;
         Post::create($myArray);
-        
-        Post::create($request->all());
-        return redirect()->route('admin.post.index')
+        return redirect()->route('post.index')
 
-        ->with('success','post created successfully.');
+            ->with('success','post created successfully.');
 
     }
 
