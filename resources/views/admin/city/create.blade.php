@@ -1,14 +1,14 @@
-@extends('admin.layout')
+@extends('layouts.app')
 
 @section('content')
 
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Add New Offers</h2>
+                <h2>ajout d'une ville</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('city.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('city.index') }}">retour</a>
             </div>
         </div>
     </div>

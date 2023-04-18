@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="row justify-content-center p-5">
+<h1 class="text-center">Bienvenue</h1>
+<h3 class="text-center">veuillez vous authentifier pour acceder a votre espace administrateur</h3>
+</div>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center p-5">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>

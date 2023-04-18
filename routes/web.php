@@ -20,14 +20,14 @@ use App\Http\Controllers\UserController;
 
 //route utilisateurs
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
 
 
 // route admin
-Route::get('/admin', function () {
+Route::get('/home', function () {
     return view('admin.index');
 });
 Route::resource('user', UserController::class);
@@ -35,4 +35,4 @@ Route::resource('post', PostController::class);
 Route::resource('city', CityController::class);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

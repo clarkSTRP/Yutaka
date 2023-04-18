@@ -64,7 +64,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit',compact('post'));
+        return view('admin.post.edit',compact('post'));
     }
 
     /**
@@ -73,7 +73,7 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         $post->update($request->all());
-        return redirect()->route('posts.index')
+        return redirect()->route('post.index')
 
         ->with('success','post updated successfully');
 

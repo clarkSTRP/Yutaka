@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('layouts.app')
 
 @section('content')
 
@@ -18,21 +18,33 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">View, add, edit, and delete users from the system.</p>
-                        <a href="" class="btn btn-primary">Go to Users</a>
+                        <a href="{{route('user.index')}}" class="btn btn-primary">Voir les utilisateurs</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h4>Manage Offers</h4>
+                        <h4>Postes des utilisateurs</h4>
                     </div>
                     <div class="card-body">
                         <p class="card-text">View, add, edit, and delete job offers in the system.</p>
-                        <a href="{{}}" class="btn btn-primary">Go to Offers</a>
+                        <a href="{{route('post.index')}}" class="btn btn-primary">Voir les postes</a>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Gestion des villes</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">View, add, edit, and delete job offers in the system.</p>
+                        <a href="{{route('city.index')}}" class="btn btn-primary">Voir les villes</a>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
