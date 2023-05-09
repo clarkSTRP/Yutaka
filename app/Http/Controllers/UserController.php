@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\V1\UserResource;
 
 class UserController extends Controller
 {
@@ -26,5 +27,19 @@ class UserController extends Controller
         return redirect()->route('user.index')
 
                         ->with('success','user deleted successfully');
+    }
+    public function show(User $user){
+        return $user;
+    }
+    public function getUsers()
+    {
+        $users = User::all()->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'emailaddress' => $user->email,
+            ];
+        });
+        return response()->json($users);
     }
 }
