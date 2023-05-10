@@ -33,7 +33,8 @@ Route::get('/home', function () {
 Route::resource('user', UserController::class);
 Route::resource('post', PostController::class);
 Route::resource('city', CityController::class);
-Route::get('/api/users', [UserController::class, 'getUsers']);
+// api
+// Route::get('/api/users', [UserController::class, 'getUsers']);
 
 Auth::routes();
 
