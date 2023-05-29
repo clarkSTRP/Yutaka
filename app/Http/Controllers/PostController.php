@@ -90,4 +90,19 @@ class PostController extends Controller
 
                         ->with('success','post deleted successfully');
     }
+
+    //api
+    public function getPost()
+    {
+        $posts = Post::all()->map(function ($post) {
+            return [
+                'id' => $post->id,
+                'name' => $post->name,
+                'address' => $post->address,
+            ];
+        });
+        return response()->json($posts);
+    }
 }
+
+
