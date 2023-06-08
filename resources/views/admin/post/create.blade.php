@@ -28,7 +28,7 @@
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('post.store') }}" method="POST">
+                    <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                             <label>Filtrer par localisation</label>
                                 <select name="cities_id" class="form-select">
@@ -45,6 +45,10 @@
                             <label for="location">Street:</label>
                             <input type="text" name="street" class="form-control" placeholder="Enter street">
                         </div>
+                        <!-- <div class="form-group">
+                            <label for="location">Userid:</label>
+                            <input type="text" name="user_id" class="form-control" placeholder="userid">
+                        </div> -->
                         <div class="form-group">
                             <label for="type">Name:</label>
                             <input type="text" name="name" class="form-control" placeholder="Enter name">
@@ -60,6 +64,10 @@
                         <div class="form-group">
                             <label for="description">Content:</label>
                             <textarea class="form-control" name="content" rows="5" placeholder="Enter content"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="available_for">Image:</label>
+                            <input type="file" name="image" class="form-control" placeholder="image">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

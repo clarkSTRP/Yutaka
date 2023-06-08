@@ -42,6 +42,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('city.index')}}">Gestion des Villes</a>
                             </li>
+
                         </ul>
                     </ul>
                     @endauth

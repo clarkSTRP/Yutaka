@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AuthController extends Controller
 {
@@ -45,22 +46,31 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
+    
         if ($token = Auth::guard('api')->attempt($credentials)) {
             $user = Auth::guard('api')->user();
-
-            return response()->json([
-                'status' => 'Success',
-                'message' => 'Logged in successfully',
-                'name' => $user->name,
-                'id' => $user->id,
-                'token' => $token
-            ]);
+    
+            if ($user->authorized) {
+                return response()->json([
+                    'status' => 'Success',
+                    'message' => 'Logged in successfully',
+                    'name' => $user->name,
+                    'id' => $user->id,
+                    'token' => $token
+                ]);
+            } else {
+                // Unauthorized user
+                return response()->json([
+                    'status' => 'Error',
+                    'message' => 'Unauthorized access'
+                ], 401);
+            }
         } else {
+            // Invalid credentials
             return response()->json([
                 'status' => 'Error',
                 'message' => 'Login Failed'
-            ]);
+            ], 401);
         }
     }
 }

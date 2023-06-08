@@ -16,26 +16,34 @@
     @endif
 
     <div class="table-responsive">
+
         <table class="table table-bordered">
             <tr>
                 <th>id</th>
                 <th>nom</th>
                 <th>email</th>
+                <th>utilisateurs Autoriser</th>
                 <th width="280px">Action</th>
             </tr>
             @foreach ($user as $users)
-            <tr>
-                <td>{{ $users['id'] }}</td>
-                <td>{{ $users['name'] }}</td>
-                <td>{{ $users['email'] }}</td>
-                <td>
-                    <form action="{{ route('user.destroy',$users->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
+                <tr>
+                    <td>{{ $users->id }}</td>
+                    <td>{{ $users->name }}</td>
+                    <td>{{ $users->email }}</td>
+                    <td>{{ $users->authorized ? 'Oui' : 'Non' }}</td>
+                    <td>
+                        <form action="{{ route('update.authorization', ['id' => $users->id]) }}" method="POST">
+                            @csrf
+                            @method('POST')
+                            <button class="btn btn-warning"type="submit">Autoriser</button>
+                        </form>
+                        <form action="{{ route('user.destroy', $users->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
             @endforeach
         </table>
     </div>

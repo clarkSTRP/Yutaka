@@ -23,6 +23,7 @@
         <table class="table table-bordered">
             <tr>
                 <th>id</th>
+                <th>Image</th>
                 <th>nom</th>
                 <th>auteur</th>
                 <th>prix</th>
@@ -35,6 +36,7 @@
             @foreach ($post as $posts)
             <tr>
                 <td>{{ $posts['id'] }}</td>
+                <td><img src="/image/{{ $posts->image }}" width="100px"></td>
                 <td>{{ $posts['name'] }}</td>
                 <td>{{ $posts['author'] }}</td>
                 <td>{{ $posts['price'] }}</td>

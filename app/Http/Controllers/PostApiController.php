@@ -20,16 +20,27 @@ class PostApiController extends Controller
             'cities_id' => 'required',
         ]);
     
-        $post = Post::create([
-            'price' => $request->price,
-            'street' => $request->street,
-            'name' => $request->name,
-            'author' => $request->author,
-            'adress' => $request->adress,
-            'content' => $request->content,
-            'user_id' => $request->user_id,
-            'cities_id' => $request->cities_id,
-        ]);
+        $data = $request->all();
+    
+        if ($request->has('image')) {
+            $base64Image = $request->input('image');
+            $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
+    
+            // Generate a unique filename for the image
+            $imageName = uniqid() . '.png';
+    
+            // Store the image in a specific directory
+            $imagePath = public_path('image/' . $imageName);
+    
+            // Save the image file
+            file_put_contents($imagePath, $imageData);
+    
+            $data['image'] = $imageName;
+        } else {
+            $data['image'] = 'default_image.png';
+        }
+    
+        $post = Post::create($data);
     
         return response()->json([
             'status' => 'success',
@@ -37,6 +48,8 @@ class PostApiController extends Controller
             'post' => $post,
         ]);
     }
+    
+    
     /**
      * Display a listing of the resource.
      */

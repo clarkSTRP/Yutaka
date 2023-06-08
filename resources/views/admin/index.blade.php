@@ -16,9 +16,24 @@
                     <div class="card-header">
                         <h4>Manage Users</h4>
                     </div>
+                    <style>
+                        .small-font {
+                            font-size: 14px; /* Adjust the font size as needed */
+                        }
+                    </style>
+
                     <div class="card-body">
                         <p class="card-text">View, add, edit, and delete users from the system.</p>
-                        <a href="{{route('user.index')}}" class="btn btn-primary">Voir les utilisateurs</a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="{{ route('user.index') }}" class="btn btn-primary btn-block small-font">Voir les utilisateurs</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="btn btn-warning btn-block small-font" href="{{ route('users.needing.authorization') }}">
+                                    {{ $countWaitingUsers }} Utilisateurs en attente d'authentification
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

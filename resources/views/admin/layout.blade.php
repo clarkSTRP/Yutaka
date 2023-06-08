@@ -23,6 +23,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('city.index')}}">Gestion des Villes</a>
             </li>
+
         </ul>
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">

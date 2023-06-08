@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\PostController;
@@ -28,9 +30,19 @@ Route::get('/', function () {
 
 // route admin
 Route::get('/home', function () {
-    return view('admin.index');
+    if (Gate::denies('access-admin')) {
+        abort(403);
+    }
+
+    $countWaitingUsers = User::where('authorized', false)->count();
+
+    return view('admin.index', ['countWaitingUsers' => $countWaitingUsers]);
 });
 Route::resource('user', UserController::class);
+Route::post('/update-authorization/{id}', [UserController::class, 'updateAuthorization'])->name('update.authorization');
+Route::get('/users/needing-authorization', [UserController::class, 'usersNeedingAuthorization'])->name('users.needing.authorization');
+
+
 Route::resource('post', PostController::class);
 Route::resource('city', CityController::class);
 // api

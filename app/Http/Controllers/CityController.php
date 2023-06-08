@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 
@@ -13,6 +14,9 @@ class CityController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         $city = City::latest()->paginate(10);
 
         return view('admin.city.index',compact('city'))
@@ -25,6 +29,9 @@ class CityController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         return view('admin.city.create');
     }
 
@@ -33,6 +40,9 @@ class CityController extends Controller
      */
     public function store(StoreCityRequest $request)
     {
+        if (Gate::denies('access-admin')){
+            abort('403');
+         }
         City::create($request->all());
         return redirect()->route('city.index')
 
