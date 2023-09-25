@@ -22,7 +22,7 @@
                 <th>id</th>
                 <th>nom</th>
                 <th>email</th>
-                <th>utilisateurs Autoriser</th>
+                <th>Utilisateur autorisé</th>
                 <th width="280px">Action</th>
             </tr>
             @foreach ($user as $users)
